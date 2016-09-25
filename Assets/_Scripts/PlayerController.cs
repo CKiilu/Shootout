@@ -14,10 +14,12 @@ public class PlayerController : MonoBehaviour {
     public Boundary boundary;
     public GameObject shot;
     public Transform shotSpawn;
+    private AudioSource audioSource;
 
     void Start()
     {
         player = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,8 +27,8 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = fireRate + Time.time;
-            //GameObject clone = 
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);// as GameObject;
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            audioSource.Play();
         }
     }
 
