@@ -4,7 +4,20 @@ using System.Collections;
 public class DestroyByContact : MonoBehaviour {
     public GameObject asteroidExplosion;
     public GameObject playerExplosion;
+    public int scoreValue;
+    private GameController gameController;
 
+    void Start()
+    {
+        GameObject gameObj = GameObject.FindGameObjectWithTag("GameController");
+        if (gameObj != null)
+        {
+            gameController = gameObj.GetComponent<GameController>();
+        } else
+        {
+            Debug.Log("Cannot find game controller.");
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Boundary"))
@@ -16,6 +29,7 @@ public class DestroyByContact : MonoBehaviour {
         {
             Instantiate(playerExplosion, transform.position, transform.rotation);
         }
+        gameController.addScore(scoreValue);
         Destroy(other.gameObject);
         Destroy(gameObject);
     }

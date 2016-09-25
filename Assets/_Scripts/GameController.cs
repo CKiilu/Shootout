@@ -5,10 +5,14 @@ public class GameController : MonoBehaviour {
     public GameObject hazard, player;
     public Vector3 spawnValues;
     public int hazardCount;
+    private int score;
     public float startWait, spawnWait, waveWait;
+    public GUIText scoreText;
 
     void Start()
     {
+        score = 0;
+        updateScore();
         StartCoroutine(spawnWaves());
     }
 
@@ -26,5 +30,16 @@ public class GameController : MonoBehaviour {
             }
             yield return new WaitForSeconds(waveWait);
         }
+    }
+
+    public void addScore(int addedScore)
+    {
+        score += addedScore;
+        updateScore();
+    }
+
+    void updateScore()
+    {
+        scoreText.text = "Score: " + score;
     }
 }
