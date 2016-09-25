@@ -2,12 +2,21 @@
 using System.Collections;
 
 public class DestroyByContact : MonoBehaviour {
-	void OnTriggerEnter(Collider other)
+    public GameObject asteroidExplosion;
+    public GameObject playerExplosion;
+
+    void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Boundary"))
+        if (other.CompareTag("Boundary"))
         {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-        }      
+            return;
+        }
+        Instantiate(asteroidExplosion, transform.position, transform.rotation);
+        if (other.CompareTag("Player"))
+        {
+            Instantiate(playerExplosion, transform.position, transform.rotation);
+        }
+        Destroy(other.gameObject);
+        Destroy(gameObject);
     }
 }
