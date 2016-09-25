@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour {
         restartText.text = "";
         gameOverText.text = "";
         updateScore();
-        StartCoroutine(spawnWaves());
+        //StartCoroutine(spawnWaves());
     }
 
     void Update()
