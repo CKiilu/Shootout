@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameController : MonoBehaviour {
-    public GameObject hazard, player;
+    public GameObject[] hazards;
     public Vector3 spawnValues;
     public int hazardCount;
     private int score;
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
             {
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazard, spawnPosition, spawnRotation);
+                Instantiate(hazards[Random.Range(0,hazards.Length)], spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }
             yield return new WaitForSeconds(waveWait);
